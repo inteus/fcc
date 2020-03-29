@@ -1,12 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import App from './components/App';
+import OrderListContainer from './components/OrderListContainer';
+import ItemListContainer from './components/ItemListContainer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducers from './reducers/rootReducer'
+import { Provider } from 'react-redux';
+import { Route, BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import '../node_modules/material-design-lite/material.min.css';
+import '../node_modules/material-design-lite/material.min';
+
+const store = createStore(
+  reducers,
+  compose(
+      applyMiddleware(thunkMiddleware),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>
+        <App/>
+        <Route exact path='/store' render={() => <ItemListContainer/>} />
+        <Route exact path='/order' render={() => <OrderListContainer />} />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

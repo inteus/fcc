@@ -1,0 +1,19 @@
+.itemsWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.ItemContainer {
+    display: flex;
+    flex-basis: 40px;
+    align-items: center;
+}
+.itemName {
+    min-width: 100px;
+}
+.itemPrice {
+    min-width: 70px;
+}
+.itemQty {
+    min-width: 70px;
+}

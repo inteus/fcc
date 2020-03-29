@@ -1,0 +1,14 @@
+.itemTotalBlock {
+    margin: 20px 0;
+}
+
+.orderWrapper {
+    display: flex;
+}
+.orderName {
+    margin: 10px;
+    min-width: 100px;
+}
+.orderQty {
+    margin: 10px;
+}
