@@ -28,7 +28,7 @@ export const catchError = (error) => ({
 export const setItems = () => {
     return (dispatch) => {
         dispatch(fetchData(true));
-        Axios.get('http://5e2df3533b0d640014be10a0.mockapi.io/api/v1/items')
+        Axios.get('https://5e2df3533b0d640014be10a0.mockapi.io/api/v1/items')
             .then(res => {
                 dispatch(getItems(res.data));
                 dispatch(fetchData(false));

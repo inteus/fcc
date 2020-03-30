@@ -28,7 +28,7 @@ export const catchCartError = (error) => ({
 export const createOrder = (name, phone, order, total) => {
     return (dispatch) => {
         dispatch(sendToggle(true));
-        Axios.post('http://5e2df3533b0d640014be10a0.mockapi.io/api/v1/order', {
+        Axios.post('https://5e2df3533b0d640014be10a0.mockapi.io/api/v1/order', {
             id: Date.now().toString(),
             customer_name: name,
             customer_phone: phone,
