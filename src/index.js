@@ -7,7 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers/rootReducer'
 import { Provider } from 'react-redux';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import '../node_modules/material-design-lite/material.min.css';
 import '../node_modules/material-design-lite/material.min';
@@ -22,13 +22,13 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <App/>
         <Route exact path='/store' render={() => <ItemListContainer/>} />
         <Route exact path='/order' render={() => <OrderListContainer />} />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
