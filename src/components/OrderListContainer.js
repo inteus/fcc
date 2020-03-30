@@ -33,6 +33,19 @@ class OrderListContainer extends Component {
 
     render() {
 
+        const list = Object.keys(localStorage).map(key => {
+            const listItem = JSON.parse(localStorage.getItem(key));
+
+            return (
+                <div className={key}>
+                    <p>Order №{listItem.id}</p>
+                    <p>{listItem.items.map(i => <div>{i.name}: {i.count} pcs.</div>)}</p>
+                    <p><li>Total: {listItem.total}$</li></p>
+                    <hr />
+                </div>
+            );
+        });
+
         const { myOrder, totalAmount, error, sendToggle } = this.props;
         let totalItems = myOrder.reduce((sum, item) => {
             return sum += item.count;
@@ -81,6 +94,8 @@ class OrderListContainer extends Component {
                             type='submit'>Create order</button>
                     </div>
                 </form>
+                <div style={{ margin: "10px" }}><b>Orders made:</b></div>
+                <div style={{ margin: "10px" }}>{Object.keys(list).length === 0 ? 'No orders yet!' : list}</div>
             </div>
         )
     }

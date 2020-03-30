@@ -37,9 +37,16 @@ export const createOrder = (name, phone, order, total) => {
         })
             .then((response) => {
                 console.log(response);
+                const order = {
+                    id: response.data.id,
+                    items: response.data.customer_order,
+                    total: response.data.total_amount
+                };
+                const key = Date.now().toString()
+                localStorage.setItem(key, JSON.stringify(order));
                 dispatch(sendToggle(false));
                 dispatch(clearCart());
-                alert('Заказ отправлен!');
+                alert(`Заказ №${response.data.id} отправлен. Время создания: ${Date().toString()}!`);
                 dispatch(setItems());
             })
             .catch((error) => {
