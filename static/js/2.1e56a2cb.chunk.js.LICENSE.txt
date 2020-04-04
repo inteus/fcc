@@ -4,14 +4,6 @@ object-assign
 @license MIT
 */
 
-/**
- * material-design-lite - Material Design Components in CSS, JS and HTML
- * @version v1.3.0
- * @license Apache-2.0
- * @copyright 2015 Google, Inc.
- * @link https://github.com/google/material-design-lite
- */
-
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
