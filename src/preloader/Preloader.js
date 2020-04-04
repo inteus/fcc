@@ -2,7 +2,11 @@ import React from 'react';
 
 const Preloader = () => {
     return (
-        <div className="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style={{margin: "50px"}}></div>
+        <div class="d-flex justify-content-center" style={{margin: "50px"}}>
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
     )
 }
 
