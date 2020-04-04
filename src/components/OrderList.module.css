@@ -1,14 +1,46 @@
-.itemTotalBlock {
-    margin: 20px 0;
+.order__container {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin: 5px;
+    padding: 5px;
 }
 
-.orderWrapper {
+.order__list {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #DFE5EC;
+    box-sizing: border-box;
+    width: 250px;
+    background: #fff;
+    text-align: center;
 }
-.orderName {
+
+.order__list__item {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin: 5px;
+}
+
+.order__list__btn {
     margin: 10px;
-    min-width: 100px;
 }
-.orderQty {
+
+.order__detail {
+    width: 250px;
+    margin: 15px;
+}
+
+.order__made__total {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.order__made__total__header {
+    text-align: center;
     margin: 10px;
 }

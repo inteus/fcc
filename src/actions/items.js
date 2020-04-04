@@ -3,6 +3,7 @@ import Axios from 'axios';
 export const GET_ITEMS = "GET_ITEMS";
 export const FETCH_DATA = "FETCH_DATA";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+export const RETURN_ITEM = "RETURN_ITEM";
 export const CATCH_ERROR = "CATCH_ERROR";
 
 export const getItems = (items) => ({
@@ -17,6 +18,11 @@ export const fetchData = (isFetching) => ({
 
 export const removeItem = (itemId) => ({
     type: REMOVE_ITEM,
+    itemId
+})
+
+export const returnItem = (itemId) => ({
+    type: RETURN_ITEM,
     itemId
 })
 

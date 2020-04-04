@@ -24,11 +24,16 @@ const itemsReducer = (state = initialState, action) => {
 
         case actions.REMOVE_ITEM:
 
-            const newList = state.items.map(item => (item.id === action.itemId) ? { ...item, quantity: item.quantity - 1 } : item);
+            return {
+                ...state,
+                items: state.items.map(item => (item.id === action.itemId) ? { ...item, quantity: item.quantity - 1 } : item)
+            }
+
+        case actions.RETURN_ITEM:
 
             return {
                 ...state,
-                items: newList
+                items: state.items.map(item => (item.id === action.itemId) ? { ...item, quantity: item.quantity + 1 } : item)
             }
 
         case actions.CATCH_ERROR:

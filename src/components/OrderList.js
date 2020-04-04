@@ -1,18 +1,11 @@
 import React from 'react';
-import styles from './OrderList.module.css';
-
+import st from './OrderList.module.css';
 
 const OrderList = (props) => {
     return (
-        <div>
-            <div className={styles.orderWrapper} >
-                <div className={styles.orderName} >
-                    <li>{props.name}</li>
-                </div>
-                <div className={styles.orderQty}>
-                    {props.count} pcs.
-                    </div>
-            </div>
+        <div className={st.order__list__item}>
+                <div>{props.name}</div>
+                <div>{props.count} pcs.</div>
         </div>
     )
 }

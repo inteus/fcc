@@ -40,7 +40,7 @@ const orderReducer = (state = initialState, action) => {
                 totalAmount: state.totalAmount + action.itemPrice
             }
 
-        case actions.CLEAR_CART:
+        case actions.REMOVE_CART_ITEMS:
             return {
                 ...state,
                 myOrder: [],
@@ -53,7 +53,7 @@ const orderReducer = (state = initialState, action) => {
                 sendToggle: action.isSending
             }
 
-            case actions.CATCH_CART_ERROR:
+        case actions.CATCH_CART_ERROR:
                 return {
                     ...state,
                     error: action.error
