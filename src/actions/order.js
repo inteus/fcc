@@ -38,7 +38,7 @@ export function showAlert(text) {
 
     setTimeout(() => {
       dispatch(hideAlert())
-    }, 3000)
+    }, 4000)
   }
 }
 
@@ -50,6 +50,9 @@ export function hideAlert() {
 
 export const createOrder = (name, phone, order, total) => {
   return (dispatch) => {
+    if (!name.trim() || !phone.trim()) {
+      return dispatch(showAlert('You must fill out all the contact fields!'));
+    }
     dispatch(sendToggle(true));
     Axios.post('https://5e2df3533b0d640014be10a0.mockapi.io/api/v1/order', {
       customer_name: name,

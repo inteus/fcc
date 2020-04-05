@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addToOrder, createOrder, showAlert, clearCart } from '../actions/order';
 import OrderList from './OrderList';
 import Error from '../notifications/Error';
+import Alert from '../notifications/Alert';
 import Preloader from '../preloader/Preloader';
 import st from './OrderList.module.css';
 
@@ -59,6 +60,7 @@ class OrderListContainer extends Component {
         return (
             <div>
                 <form onSubmit={this.sendOrder}>
+                    {this.props.alert && <Alert text={this.props.alert} />}
                     <div className={st.order__container}>
                         <div className={st.order__list}>
                             <div>
@@ -89,7 +91,7 @@ class OrderListContainer extends Component {
                                 onChange={this.changeInputHandler} />
                             </div>
                             <div className={st.order__detail}>
-                                <button className="btn btn-success" disabled={(order.length) ? '' : 'disabled'} type='submit'>Create order</button>
+                                <button className="btn btn-success" disabled={(order.length) ? '' : 'disabled'} type='submit' >Create order</button>
                             </div>
                         </div>
                     </div>
@@ -108,12 +110,13 @@ class OrderListContainer extends Component {
 }
 
 let mapStateToProps = (state) => {
-    const { myOrder, totalAmount, error, sendToggle } = state.order;
+    const { myOrder, totalAmount, error, alert, sendToggle } = state.order;
     return {
         myOrder,
         totalAmount,
         error,
-        sendToggle
+        sendToggle,
+        alert
     }
 }
 
