@@ -6,8 +6,6 @@ const Success = (props) => (
     <div className="alert alert-success" role="alert">
       {props.text}  <button type="button" class="btn btn-danger btn-sm" onClick={props.hideSuccessAlert} title="Click to hide">hide</button>
     </div>
-    <div>
-    </div>
   </div>
 )
 

@@ -4,6 +4,7 @@ import { setItems } from './items';
 export const ADD_TO_ORDER = "ADD_TO_ORDER";
 export const SEND_ORDER_TOGGLE = "SEND_ORDER_TOGGLE";
 export const REMOVE_CART_ITEMS = "REMOVE_CART_ITEMS";
+// export const REMOVE_ORDER_ITEM = "REMOVE_ORDER_ITEM";
 export const CATCH_CART_ERROR = "CATCH_CART_ERROR";
 export const SHOW_ALERT = "SHOW_ALERT";
 export const HIDE_ALERT = "HIDE_ALERT";
@@ -22,6 +23,13 @@ export const sendToggle = (isSending) => ({
   isSending
 })
 
+// export const removeFromOrder = (id, price, count) => ({
+//   type: REMOVE_ORDER_ITEM,
+//   id,
+//   price,
+//   count
+// })
+
 export const removeItems = () => ({
   type: REMOVE_CART_ITEMS
 })
@@ -31,20 +39,17 @@ export const catchCartError = (error) => ({
   error
 })
 
-export function showAlert(text) {
-  return dispatch => {
+export const showAlert = (text) => {
+  return (dispatch) => {
     dispatch({
       type: SHOW_ALERT,
       payload: text
     })
-
-    setTimeout(() => {
-      dispatch(hideAlert())
-    }, 4000)
+    setTimeout(() => { dispatch(hideAlert()) }, 4000)
   }
 }
 
-export function hideAlert() {
+export const hideAlert = () => {
   return {
     type: HIDE_ALERT
   }
@@ -55,7 +60,7 @@ export const successAlert = (text) => ({
   text
 })
 
-export function hideSuccessAlert() {
+export const hideSuccessAlert = () => {
   return {
     type: HIDE_SUCCESS_ALERT
   }
@@ -64,7 +69,7 @@ export function hideSuccessAlert() {
 export const createOrder = (name, phone, order, total) => {
   return (dispatch) => {
     if (!name.trim() || !phone.trim()) {
-      return dispatch(showAlert('You must fill out all the contact fields!'));
+      return dispatch(showAlert('You must fill out all contact fields!'));
     }
     dispatch(sendToggle(true));
     Axios.post('https://5e2df3533b0d640014be10a0.mockapi.io/api/v1/order', {

@@ -30,14 +30,12 @@ class ItemListContainer extends Component {
             <div className={st.itemsListWrapper}>
                 <div className={st.itemsTitleWrapper}>
                     <div className={st.item__title}>Title</div>
-                    <div className={st.item__title}>Cost</div>
-                    <div className={st.item__title}>Qty</div>
-                    <div className={st.item__title}>Add to cart</div>
+                      <div className={st.item__title}>Cost</div>
+                        <div className={st.item__title}>Qty</div>
+                         <div className={st.item__title}>Add to cart</div>
                 </div>
-                <div>
-                    {item}
-                </div>
-            </div>
+                <div>{item}</div>
+                  </div>
         )
     }
 }

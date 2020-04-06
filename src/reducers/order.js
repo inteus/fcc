@@ -14,18 +14,14 @@ const orderReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case actions.ADD_TO_ORDER:
-
             const newList = state.myOrder;
-
             let alreadyInOrder = false;
-
             newList.forEach(item => {
                 if (item.id === action.itemId) {
                     item.count += 1;
                     alreadyInOrder = true;
                 }
             });
-
             if (!alreadyInOrder) {
                 newList.push(
                     {
@@ -35,12 +31,20 @@ const orderReducer = (state = initialState, action) => {
                         count: 1
                     })
             }
-
             return {
                 ...state,
                 myOrder: newList,
                 totalAmount: state.totalAmount + action.itemPrice
             }
+
+        // case actions.REMOVE_ORDER_ITEM:
+        //     return {
+        //         ...state,
+        //         myOrder: state.myOrder.filter(item => {
+        //             return item.id !== action.id
+        //         }),
+        //         totalAmount: state.totalAmount - 1
+        //     };
 
         case actions.REMOVE_CART_ITEMS:
             return {

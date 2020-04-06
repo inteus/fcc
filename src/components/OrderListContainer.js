@@ -35,25 +35,22 @@ class OrderListContainer extends Component {
 
     render() {
 
-        const list = Object.keys(localStorage).map(key => {
-            const listItem = JSON.parse(localStorage.getItem(key));
-
-            return (
-                <div className={key}>
-                    <p><u><i>Order №{listItem.id}</i></u></p>
-                    <p>{listItem.items.map(i => <div>{i.name}: {i.count} pcs.</div>)}</p>
-                    <p><i>Total :</i> <b>{listItem.total} $</b></p>
-                    <hr />
-                </div>
-            );
-        });
-
         const { myOrder, totalAmount, error, sendToggle } = this.props;
-        // let totalItems = myOrder.reduce((sum, item) => {
-        //     return sum += item.count;
-        // }, 0);
 
-        let order = myOrder.map(item => <OrderList {...item} key={item.id} />);
+        const list = Object.keys(localStorage)
+            .map(key => {
+                const listItem = JSON.parse(localStorage.getItem(key));
+                return (
+                    <div className={key}>
+                        <p><u><i>Order №{listItem.id}</i></u></p>
+                        <p>{listItem.items.map(i => <div>{i.name}: {i.count} pcs.</div>)}</p>
+                        <p><i>Total :</i> <b>{listItem.total} $</b></p>
+                        <hr />
+                    </div>
+                );
+            });
+
+        let order = myOrder.map(item => <OrderList {...item} key={item.id} removeFromOrder={this.props.removeFromOrder} />);
 
         if (error) return <Error />
         if (sendToggle) return <Preloader />
@@ -68,14 +65,10 @@ class OrderListContainer extends Component {
                             <div>
                                 {(!order.length) ? 'Your order list is empty!' : order}
                             </div>
-                            <hr />
                             <div className={st.order__list__total}>
                                 <i>Total :</i> <b>{totalAmount} $</b>
                             </div>
-                            <div>
-                            </div>
                         </div>
-                        {/* <div>{totalItems === 0 ? `Your order list is empty!` : `You have ${totalItems} items in your order`}</div> */}
                         <div>
                             <div className={st.order__detail}>Name: <input
                                 className="form-control" type='text'

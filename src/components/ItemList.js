@@ -12,10 +12,10 @@ const ItemList = (props) => {
             </div>
             <div className={st.item__item}>
                 {price} $
-                </div>
+            </div>
             <div className={st.item__item}>
                 {quantity} pcs.
-                </div>
+            </div>
             <div className={st.item__item}><button className="btn btn-secondary" onClick={() => {
                 props.removeItem(id);
                 props.addToOrder(name, id, price);
