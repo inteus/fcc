@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToOrder, createOrder, showAlert, clearCart } from '../actions/order';
+import { addToOrder, createOrder, showAlert, successAlert, hideSuccessAlert, clearCart } from '../actions/order';
 import OrderList from './OrderList';
 import Error from '../notifications/Error';
 import Alert from '../notifications/Alert';
 import Preloader from '../preloader/Preloader';
 import st from './OrderList.module.css';
+import Success from '../notifications/Success';
 
 class OrderListContainer extends Component {
 
@@ -61,6 +62,7 @@ class OrderListContainer extends Component {
             <div>
                 <form onSubmit={this.sendOrder}>
                     {this.props.alert && <Alert text={this.props.alert} />}
+                    {this.props.orderInfo && <Success text={this.props.orderInfo} hideSuccessAlert={this.props.hideSuccessAlert} />}
                     <div className={st.order__container}>
                         <div className={st.order__list}>
                             <div>
@@ -110,13 +112,14 @@ class OrderListContainer extends Component {
 }
 
 let mapStateToProps = (state) => {
-    const { myOrder, totalAmount, error, alert, sendToggle } = state.order;
+    const { myOrder, totalAmount, error, alert, orderInfo, sendToggle } = state.order;
     return {
         myOrder,
         totalAmount,
         error,
         sendToggle,
-        alert
+        alert,
+        orderInfo
     }
 }
 
@@ -125,5 +128,7 @@ export default connect(mapStateToProps,
         addToOrder,
         createOrder,
         showAlert,
+        successAlert,
+        hideSuccessAlert,
         clearCart
     })(OrderListContainer);

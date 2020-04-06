@@ -7,6 +7,8 @@ export const REMOVE_CART_ITEMS = "REMOVE_CART_ITEMS";
 export const CATCH_CART_ERROR = "CATCH_CART_ERROR";
 export const SHOW_ALERT = "SHOW_ALERT";
 export const HIDE_ALERT = "HIDE_ALERT";
+export const SUCCESS_ALERT = "SUCCESS_ALERT";
+export const HIDE_SUCCESS_ALERT = "HIDE_SUCCESS_ALERT";
 
 export const addToOrder = (itemName, itemId, itemPrice) => ({
   type: ADD_TO_ORDER,
@@ -48,6 +50,17 @@ export function hideAlert() {
   }
 }
 
+export const successAlert = (text) => ({
+  type: SUCCESS_ALERT,
+  text
+})
+
+export function hideSuccessAlert() {
+  return {
+    type: HIDE_SUCCESS_ALERT
+  }
+}
+
 export const createOrder = (name, phone, order, total) => {
   return (dispatch) => {
     if (!name.trim() || !phone.trim()) {
@@ -71,7 +84,7 @@ export const createOrder = (name, phone, order, total) => {
         localStorage.setItem(key, JSON.stringify(order));
         dispatch(sendToggle(false));
         dispatch(clearCart());
-        alert(`Заказ №${response.data.id} отправлен. Время создания: ${Date().toString()}!`);
+        dispatch(successAlert(`Order №${response.data.id} sent! Create time: ${Date().toString().slice(0, 24)}`));
         dispatch(setItems());
       })
       .catch((error) => {

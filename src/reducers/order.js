@@ -5,7 +5,8 @@ let initialState = {
     totalAmount: 0,
     sendToggle: false,
     error: null,
-    alert: null
+    alert: null,
+    orderInfo: null
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -64,11 +65,20 @@ const orderReducer = (state = initialState, action) => {
                     return {
                         ...state, 
                         alert: action.payload}
-                    
+
         case actions.HIDE_ALERT:
                     return {
                         ...state, 
                         alert: null}
+
+        case actions.SUCCESS_ALERT:
+                            return {
+                                ...state, 
+                                orderInfo: action.text}
+        case actions.HIDE_SUCCESS_ALERT:
+                            return {
+                                ...state, 
+                                orderInfo: null}
 
         default:
             return state;
